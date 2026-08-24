@@ -1,14 +1,21 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Timeline;
+using UnityEngine.UIElements;
 
 public class PlayerInputs : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    [SerializeField]
-    private float moveSpeed = 1f;
-
+    
+    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float attDamage = 10f;
+    [SerializeField] private float attSpeed = 1f;
+    [SerializeField] private float attRange = 5f;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform firePoint;
+    private float attTimer;
     private Rigidbody2D rb;
-    private Vector3 movement;
+    private Vector2 movement;
 
      private void Awake()
     {
@@ -16,13 +23,13 @@ public class PlayerInputs : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("HERO INIT");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        movement = Vector3.zero;
+        movement = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -43,26 +50,78 @@ public class PlayerInputs : MonoBehaviour
 
         movement = movement.normalized;
 
+        attTimer -= Time.deltaTime;
+
+        if(movement == Vector2.zero && attTimer <= 0f)
+        {
+            Attack();
+            attTimer=attSpeed;
+        }
+    }   
+
+    private Transform FindNearestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         
-     
-    }
+        Transform nearestEnemy = null;
+        float nearestDistance = attRange;
+        
+        foreach(GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
 
-    private void FixedUpdate()
-    {
-        // rb.linearVelocity = movement * moveSpeed;
-        rb.AddForce(movement * moveSpeed, ForceMode2D.Impulse);
-        // transform.LookAt(transform.position + movement);
-        lookat();
-    }
+            if(distance< nearestDistance)
+            {
+                nearestEnemy=enemy.transform;
+            }
+        }
 
-    private void lookat()
+        return nearestEnemy;
+    }   
+
+    private void Attack()
     {
-        if(movement == Vector3.zero)
+        Transform target = FindNearestEnemy();
+
+        if(target == null)
         {
             return;
         }
-        Vector3 tmp = transform.InverseTransformPoint(transform.position + movement);
-        float angle = Mathf.Atan2(tmp.y, tmp.x) * Mathf.Rad2Deg - 90;
+
+        lookAtEnemy(target.position);
+
+        GameObject arrow = Instantiate(
+            arrowPrefab,
+            firePoint.position,
+            transform.rotation
+        );
+
+    }
+    private void FixedUpdate()
+    {
+        
+        rb.AddForce(movement * moveSpeed, ForceMode2D.Impulse);
+        lookAtDirection();
+    }
+
+    private void lookAtDirection()
+    {
+        //If player does not move return
+        if(movement == Vector2.zero)
+        {
+            return;
+        }
+
+        Vector2 lookAt = transform.InverseTransformPoint(new Vector2(transform.position.x, transform.position.y) + movement);
+        float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg - 90;
+
+        transform.Rotate(0, 0, angle);
+    }
+
+    private void lookAtEnemy(Vector3 targetPos)
+    {
+        Vector2 lookAt = transform.InverseTransformPoint(new Vector2(targetPos.x, targetPos.y) + movement);
+        float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg - 90;
 
         transform.Rotate(0, 0, angle);
     }
