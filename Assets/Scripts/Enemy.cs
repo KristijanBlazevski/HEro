@@ -3,7 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float health = 2000f;
+    [SerializeField] private float health = 40f;
+
     private Rigidbody2D rb;
     private Transform player;
 
