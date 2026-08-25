@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private GameObject parentObj;
     [SerializeField] private int enemyCount = 4;
 
     private void Start()
@@ -25,8 +26,10 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(
                 enemyPrefab,
                 spawnPoint.position,
-                Quaternion.identity
+                Quaternion.identity,
+                parentObj.transform
             );
+            
 
             availablePoints.RemoveAt(randomIndex);
         }
