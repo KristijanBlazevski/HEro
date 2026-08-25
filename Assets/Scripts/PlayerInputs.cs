@@ -12,7 +12,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private float attRange = 5f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
-
+    [SerializeField] private float health = 100f;
     [SerializeField] GameObject[] enemies;
     [SerializeField] Transform target;
     private float attTimer;
@@ -90,8 +90,6 @@ public class PlayerInputs : MonoBehaviour
             return;
         }
 
-        
-
         lookAtEnemy(target.position);
 
         GameObject arrow = Instantiate(
@@ -122,11 +120,23 @@ public class PlayerInputs : MonoBehaviour
         transform.Rotate(0, 0, angle);
     }
 
-    private void lookAtEnemy(Vector3 targetPos)
+    private void lookAtEnemy(Vector2 targetPos)
     {
         Vector2 lookAt = transform.InverseTransformPoint(new Vector2(targetPos.x, targetPos.y) + movement);
         float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg - 90;
 
         transform.Rotate(0, 0, angle);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        Debug.Log("Player HP: " + health);
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
