@@ -8,11 +8,13 @@ public class PlayerInputs : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float attDamage = 10f;
     [SerializeField] private float attSpeed = 1f;
     [SerializeField] private float attRange = 5f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
+
+    [SerializeField] GameObject[] enemies;
+    [SerializeField] Transform target;
     private float attTimer;
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -61,7 +63,7 @@ public class PlayerInputs : MonoBehaviour
 
     private Transform FindNearestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         
         Transform nearestEnemy = null;
         float nearestDistance = attRange;
@@ -69,10 +71,10 @@ public class PlayerInputs : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
-
-            if(distance< nearestDistance)
+            if(distance < nearestDistance)
             {
                 nearestEnemy=enemy.transform;
+                nearestDistance = distance;
             }
         }
 
@@ -81,12 +83,14 @@ public class PlayerInputs : MonoBehaviour
 
     private void Attack()
     {
-        Transform target = FindNearestEnemy();
+        target = FindNearestEnemy();
 
         if(target == null)
         {
             return;
         }
+
+        
 
         lookAtEnemy(target.position);
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float health = 30f;
+    [SerializeField] private float health = 2000f;
     private Rigidbody2D rb;
     private Transform player;
 
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        Debug.Log("Enemy HP: " + health);
+        // Debug.Log("Enemy HP: " + health);
 
         if (health <= 0)
         {
