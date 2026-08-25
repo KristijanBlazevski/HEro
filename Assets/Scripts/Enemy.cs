@@ -3,7 +3,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
+<<<<<<< Updated upstream
 
+=======
+    [SerializeField] private float health = 40f;
+>>>>>>> Stashed changes
     private Rigidbody2D rb;
     private Transform player;
 
@@ -34,4 +38,19 @@ public class Enemy : MonoBehaviour
 
         rb.linearVelocity = direction * moveSpeed;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        Debug.Log("Enemy HP: " + health);
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+>>>>>>> Stashed changes
 }
