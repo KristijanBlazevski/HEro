@@ -36,16 +36,14 @@ public class Arrow : MonoBehaviour
     if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            RangedEnemy rangedEnemy = collision.gameObject.GetComponent<RangedEnemy>();
-
+            RangedEnemy rangeEnemy = collision.gameObject.GetComponent<RangedEnemy>();
             if (enemy != null)
             {
-                
                 enemy.TakeDamage(damage);
             }
-            if(rangedEnemy != null)
+            if (rangeEnemy != null)
             {
-                rangedEnemy.TakeDamage(damage);
+                rangeEnemy.TakeDamage(damage);
             }
 
             Destroy(gameObject);

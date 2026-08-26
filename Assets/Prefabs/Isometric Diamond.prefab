@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7327932138086192646}
   - component: {fileID: -6399594606523319710}
   - component: {fileID: -3966043444527742706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Isometric Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,4 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedProjectile
   speed: 4
-  timeToLive: 3
+  timeToLive: 2
+  damage: 20
