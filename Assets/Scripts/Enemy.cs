@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health = 50f;
-    [SerializeField] private float moveSpeed = 2f;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-
-=======
     [SerializeField] private float health = 40f;
->>>>>>> Stashed changes
+    [SerializeField] private float moveSpeed = 2f;
+
     private Rigidbody2D rb;
     private Transform player;
 
@@ -20,11 +13,6 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-<<<<<<< Updated upstream
-
-    
-=======
->>>>>>> Stashed changes
     }
 
     private void Start()
@@ -32,13 +20,6 @@ public class Enemy : MonoBehaviour
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
-<<<<<<< Updated upstream
-        
-
-        player = playerObject.transform;
-
-        
-=======
         if (playerObject != null)
         {
             player = playerObject.transform;
@@ -51,7 +32,6 @@ public class Enemy : MonoBehaviour
             return;
 
         LookAtPlayer();
->>>>>>> Stashed changes
     }
 
     private void FixedUpdate()
@@ -70,20 +50,14 @@ public class Enemy : MonoBehaviour
 
         rb.linearVelocity = direction * moveSpeed;
     }
-<<<<<<< Updated upstream
-=======
 
     private void LookAtPlayer()
     {
         Vector2 direction =
             player.position - transform.position;
 
-<<<<<<< Updated upstream
-        Debug.Log("Enemy HP: " + health);
-=======
         float angle =
             Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
->>>>>>> Stashed changes
 
         transform.rotation =
             Quaternion.Euler(0f, 0f, angle);
@@ -111,5 +85,4 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
->>>>>>> Stashed changes
 }
