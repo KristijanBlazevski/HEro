@@ -180,5 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedProjectile
   speed: 4
-  timeToLive: 2
+  timeToLive: 1
   damage: 20

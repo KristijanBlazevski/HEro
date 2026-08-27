@@ -12,7 +12,6 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnEnemies();
     }
-
     private void SpawnEnemies()
     {
     List<Transform> availablePoints = new List<Transform>(spawnPoints);
@@ -23,14 +22,13 @@ public class EnemySpawner : MonoBehaviour
 
             Transform spawnPoint = availablePoints[randomIndex];
 
-            Instantiate(
+            GameObject enemy = Instantiate(
                 enemyPrefab,
                 spawnPoint.position,
                 Quaternion.identity,
                 parentObj.transform
             );
             
-
             availablePoints.RemoveAt(randomIndex);
         }
     }

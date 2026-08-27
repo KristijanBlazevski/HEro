@@ -3,7 +3,7 @@ using UnityEngine;
 public class RangedProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 4f;
-    [SerializeField] private float timeToLive = 2f;
+    [SerializeField] private float timeToLive = 1f;
     [SerializeField] private float damage = 20f;
 
     private Rigidbody2D rb;

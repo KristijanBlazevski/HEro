@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float timeToLive = 3f;
+    [SerializeField] private float timeToLive = 1f;
     [SerializeField] private float damage = 10f;
     private Rigidbody2D rb;
 
@@ -45,7 +46,6 @@ public class Arrow : MonoBehaviour
             {
                 rangeEnemy.TakeDamage(damage);
             }
-
             Destroy(gameObject);
         }
     }

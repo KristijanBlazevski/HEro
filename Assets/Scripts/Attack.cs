@@ -42,7 +42,7 @@ public class Attack : MonoBehaviour
                 transform.rotation
             );
 
-    Destroy(attack, attackDelay);
+        Destroy(attack, attackDelay);
         Invoke(nameof(DealDamage), attackDelay);
     }
 

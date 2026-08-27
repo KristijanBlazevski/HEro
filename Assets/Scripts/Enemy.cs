@@ -4,15 +4,17 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health = 40f;
     [SerializeField] private float moveSpeed = 2f;
-
+    [SerializeField] private LayerMask wallLayer;
     private Rigidbody2D rb;
     private Transform player;
+    private EnemySpawner enemySpawner;
 
     private bool isAttacking;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     private void Start()
@@ -47,7 +49,7 @@ public class Enemy : MonoBehaviour
 
         Vector2 direction =
             (player.position - transform.position).normalized;
-
+    
         rb.linearVelocity = direction * moveSpeed;
     }
 
@@ -82,6 +84,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0f)
         {
+            // enemySpawner.RemoveEnemy(this);
             Destroy(gameObject);
         }
     }
