@@ -137,6 +137,7 @@ public class PlayerInputs : MonoBehaviour
         if (health <= 0f)
         {
             Destroy(gameObject);
+            GameManager.Instance.GameOver();
         }
     }
 }
