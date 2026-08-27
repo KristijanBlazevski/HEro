@@ -134,8 +134,6 @@ public class PlayerInputs : MonoBehaviour
     {
         health -= damage;
 
-        Debug.Log("Player HP: " + health);
-
         if (health <= 0f)
         {
             Destroy(gameObject);

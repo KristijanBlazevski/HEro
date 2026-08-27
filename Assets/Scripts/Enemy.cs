@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        enemySpawner = GameObject.Find("MeleeSpawner").GetComponent<EnemySpawner>();
     }
 
     private void Start()
@@ -80,7 +80,6 @@ public class Enemy : MonoBehaviour
     {
         health -= damageAmount;
 
-        Debug.Log("Melee Enemy HP: " + health);
 
         if (health <= 0f)
         {

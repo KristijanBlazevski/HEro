@@ -76,7 +76,6 @@ public class RangedEnemy : MonoBehaviour
         float distance =
             Vector2.Distance(transform.position, player.position);
 
-        // Move toward player until attack range
         if (!isRepositioning && distance > attackRange)
         {
             Vector2 direction =
@@ -84,7 +83,7 @@ public class RangedEnemy : MonoBehaviour
 
             rb.linearVelocity = direction * moveSpeed;
         }
-        // Move toward new position
+
         else if (isRepositioning)
         {
             Vector2 direction =
@@ -142,8 +141,6 @@ public class RangedEnemy : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-
-        Debug.Log("Ranged Enemy HP: " + health);
 
         if (health <= 0f)
         {

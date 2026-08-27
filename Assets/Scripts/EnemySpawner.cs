@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,11 +11,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnEnemies();
+        
     }
-    private void SpawnEnemies()
+    public List<GameObject> SpawnEnemies()
     {
     List<Transform> availablePoints = new List<Transform>(spawnPoints);
+    List<GameObject> enemies = new List<GameObject>();
 
     for (int i = 0; i < enemyCount; i++)
         {
@@ -28,8 +30,10 @@ public class EnemySpawner : MonoBehaviour
                 Quaternion.identity,
                 parentObj.transform
             );
-            
+            enemies.Add(enemy);
             availablePoints.RemoveAt(randomIndex);
         }
+        return enemies;
     }
+
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -7281560797425426375}
   - component: {fileID: 107607695672017783}
   - component: {fileID: -7051190882004966861}
-  - component: {fileID: 7328601576763374542}
   m_Layer: 6
   m_Name: RangeEnemy
   m_TagString: Enemy
@@ -179,28 +178,6 @@ MonoBehaviour:
   firePoint: {fileID: 9028979056400820942}
   repositionTime: 3
   repositionDistance: 2
---- !u!195 &7328601576763374542
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3934820768083531028}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.49999997
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.88281244
-  m_BaseOffset: 0.44140622
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &6609493745832781275
 GameObject:
   m_ObjectHideFlags: 0

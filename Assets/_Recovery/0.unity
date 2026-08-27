@@ -236,6 +236,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4a61a0acd8cd9b4bbb6e6875e594fcb, type: 3}
+--- !u!4 &615767905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 806256661718536972, guid: 1f776f59f44f12d42b919b079e96c3af, type: 3}
+  m_PrefabInstance: {fileID: 1189320088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3730931204923545096, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5246119902251275154, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -423,7 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7365675431606980877, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -435,6 +444,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7365675431606980877, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1188456502}
+    - targetCorrespondingSourceObject: {fileID: 5246119902251275154, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1672143636}
   m_SourcePrefab: {fileID: 100100000, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
 --- !u!1 &1188456500 stripped
 GameObject:
@@ -525,7 +537,11 @@ PrefabInstance:
     - target: {fileID: 3377158411665354729, guid: 1f776f59f44f12d42b919b079e96c3af, type: 3}
       propertyPath: connectedTo
       value: 
-      objectReference: {fileID: 1413499481}
+      objectReference: {fileID: 1479987555}
+    - target: {fileID: 4442972345451241367, guid: 1f776f59f44f12d42b919b079e96c3af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5734895103901272040, guid: 1f776f59f44f12d42b919b079e96c3af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.8483
@@ -582,11 +598,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 250201686}
   m_SourcePrefab: {fileID: 100100000, guid: 1f776f59f44f12d42b919b079e96c3af, type: 3}
---- !u!4 &1413499481 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1254108666791775034, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
-  m_PrefabInstance: {fileID: 1112640087}
+--- !u!1 &1479987554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479987555}
+  m_Layer: 0
+  m_Name: EntranceLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479987555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479987554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.23, y: -3.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1637291679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547891152 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6163852492766369928, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
@@ -643,6 +685,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5246119902251275154, guid: 36e210abf694dbf4db3afd47d0ea4a94, type: 3}
   m_PrefabInstance: {fileID: 1112640087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672143636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672143633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9b773102682e34f850ea5c951350f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalManger
+  connectedTo: {fileID: 615767905}
 --- !u!1 &1913845286
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +829,7 @@ Transform:
   m_GameObject: {fileID: 1913845286}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.69, y: 0.94, z: -10}
+  m_LocalPosition: {x: -0.32, y: 1.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -834,11 +889,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5040798055699793478, guid: 0f8379a79d899a84f9b6143acfc2b78b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 553411491333850349, guid: 0f8379a79d899a84f9b6143acfc2b78b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1479987555}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8379a79d899a84f9b6143acfc2b78b, type: 3}
 --- !u!1001 &5062091486097053399
@@ -851,11 +909,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.52
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.07
+      value: -2.06
       objectReference: {fileID: 0}
     - target: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_LocalPosition.z
