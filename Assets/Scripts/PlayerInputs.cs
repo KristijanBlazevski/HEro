@@ -1,13 +1,17 @@
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerInputs : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float health = 100f;
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float currentHealth;
     [SerializeField] private float attSpeed = 1f;
     [SerializeField] private float attRange = 5f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private TMP_Text healthText;
     private Rigidbody2D rb;
     private Vector3 movement;
     private float attTimer;
@@ -19,7 +23,11 @@ public class PlayerInputs : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
         attTimer = 0f;
+        healthText.text = currentHealth + " / " + maxHealth;
     }
 
     private void Update()
@@ -132,9 +140,10 @@ public class PlayerInputs : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-
-        if (health <= 0f)
+        currentHealth -= damage;
+        healthBar.value = currentHealth;
+        healthText.text = currentHealth + " / " + maxHealth;
+        if (currentHealth <= 0f)
         {
             Destroy(gameObject);
             GameManager.Instance.GameOver();

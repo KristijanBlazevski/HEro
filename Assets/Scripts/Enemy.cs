@@ -1,10 +1,12 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health = 40f;
+    [SerializeField] private float maxHealth = 40f;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Slider healthBar;
+    private float currentHealth;
     private Rigidbody2D rb;
     private Transform player;
     private EnemySpawner enemySpawner;
@@ -19,6 +21,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
@@ -78,10 +83,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        health -= damageAmount;
+        currentHealth -= damageAmount;
+        healthBar.value = currentHealth;
 
-
-        if (health <= 0f)
+        if (currentHealth <= 0f)
         {
             // enemySpawner.RemoveEnemy(this);
             Destroy(gameObject);
