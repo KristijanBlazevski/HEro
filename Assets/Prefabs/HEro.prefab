@@ -116,7 +116,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 5731584507761909605, guid: 9dea650436c25f84f87ebbb6db3ad9ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,11 +166,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 1
-  attDemage: 10
+  maxHealth: 100
+  currentHealth: 0
   attSpeed: 1
   attRange: 5
   arrowPrefab: {fileID: 6408072768273358467, guid: b0268497ff091ba45a0993c8265bcdea, type: 3}
   firePoint: {fileID: 2673781058281734340}
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1 &9101613152954173520
 GameObject:
   m_ObjectHideFlags: 0

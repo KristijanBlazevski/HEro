@@ -1750,7 +1750,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1799,7 +1799,11 @@ PrefabInstance:
     - target: {fileID: 3969932170521439413, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+      objectReference: {fileID: 5731584507761909605, guid: 9dea650436c25f84f87ebbb6db3ad9ad, type: 3}
+    - target: {fileID: 3969932170521439413, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3969932170521439413, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -1829,7 +1833,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 861200339}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9101613152954173520, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 68365660302717523, guid: a6bba68b196bb1d40b2b44fbbde60cf6, type: 3}
       insertIndex: -1

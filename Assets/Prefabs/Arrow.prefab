@@ -181,4 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
   speed: 10
   timeToLive: 1
-  damage: 10
+  damage: 40
