@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
             return;
 
         LookAtPlayer();
+        healthBar.transform.rotation = Quaternion.identity;
+        healthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.7f);
     }
 
     private void FixedUpdate()

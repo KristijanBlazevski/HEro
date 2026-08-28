@@ -1,8 +1,8 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class RangedEnemy : MonoBehaviour
 {
-    [SerializeField] private float health = 25f;
+    [SerializeField] private float maxHealth = 25f;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float attackRange = 6f;
     [SerializeField] private float attackCooldown = 1f;
@@ -11,6 +11,7 @@ public class RangedEnemy : MonoBehaviour
 
     [SerializeField] private float repositionTime = 3f;
     [SerializeField] private float repositionDistance = 2f;
+    [SerializeField] private Slider healthBar;
     private Rigidbody2D rb;
     private Transform player;
 
@@ -19,7 +20,7 @@ public class RangedEnemy : MonoBehaviour
 
     private Vector2 targetPosition;
     private bool isRepositioning;
-
+    private float currentHealth;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +28,10 @@ public class RangedEnemy : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
+
         GameObject playerObject =
             GameObject.FindGameObjectWithTag("Player");
 
@@ -65,6 +70,8 @@ public class RangedEnemy : MonoBehaviour
             }
         }
         lookAtPlayer();
+        healthBar.transform.rotation = Quaternion.identity;
+        healthBar.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.7f);
     }
 
     private void FixedUpdate()
@@ -138,9 +145,9 @@ public class RangedEnemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        health -= damageAmount;
-
-        if (health <= 0f)
+        currentHealth -= damageAmount;
+        healthBar.value = currentHealth;
+        if (currentHealth <= 0f)
         {
             Destroy(gameObject);
         }
