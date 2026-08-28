@@ -1,16 +1,30 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Victory : MonoBehaviour
+public class VictoryScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject victoryPanel;
+
+    private void Start()
     {
-        
+        victoryPanel.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowVictory()
     {
-        
+        victoryPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Game");
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("StartGame");
     }
 }
