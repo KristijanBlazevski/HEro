@@ -50,7 +50,6 @@ public class RangedEnemy : MonoBehaviour
         float distance =
             Vector2.Distance(transform.position, player.position);
 
-        // If we are close enough to attack
         if (distance <= attackRange && !isRepositioning)
         {
             if (attackTimer <= 0f)
@@ -61,7 +60,7 @@ public class RangedEnemy : MonoBehaviour
 
             if (repositionTimer <= 0f)
             {
-                ChooseNewPosition();
+                // ChooseNewPosition();
                 repositionTimer = repositionTime;
             }
         }
@@ -83,7 +82,6 @@ public class RangedEnemy : MonoBehaviour
 
             rb.linearVelocity = direction * moveSpeed;
         }
-
         else if (isRepositioning)
         {
             Vector2 direction =
@@ -106,17 +104,17 @@ public class RangedEnemy : MonoBehaviour
         }
     }
 
-    private void ChooseNewPosition()
-    {
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+    // private void ChooseNewPosition()
+    // {
+    //     Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
-        targetPosition =
-            (Vector2)transform.position +
-            randomDirection * repositionDistance;
+    //     targetPosition =
+    //         (Vector2)transform.position +
+    //         randomDirection * repositionDistance;
 
-        isRepositioning = true;
-        repositionTimer = repositionTime;
-    }
+    //     isRepositioning = true;
+    //     repositionTimer = repositionTime;
+    // }
 
     private void Attack()
     {

@@ -48,5 +48,9 @@ public class Arrow : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    if(collision.gameObject.layer == LayerMask.NameToLayer("wall"))
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 }

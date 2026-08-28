@@ -228,13 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a366f673dc7ea44b98c24f74bd7763a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 30
+  health: 40
   moveSpeed: 2
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  wallCheckDistance: 0.8
-  wallAvoidanceStrength: 1.5
 --- !u!50 &6046152780785628442
 Rigidbody2D:
   serializedVersion: 5
