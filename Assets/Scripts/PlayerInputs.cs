@@ -21,6 +21,7 @@ public class PlayerInputs : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Slider healthBar;
     [SerializeField] private TMP_Text healthText;
+    [SerializeField] private AudioSource audioSource;
 
     private Rigidbody2D rb;
     private Vector3 movement;
@@ -156,6 +157,8 @@ public class PlayerInputs : MonoBehaviour
         {
             arrow.SetDamage(arrowDamage);
         }
+
+        audioSource.Play();
     }
 
     public void TakeDamage(float damage)

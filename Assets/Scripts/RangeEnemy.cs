@@ -10,8 +10,8 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     [SerializeField] private float repositionTime = 3f;
-    [SerializeField] private float repositionDistance = 2f;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private AudioSource audioSource;
     private Rigidbody2D rb;
     private Transform player;
 
@@ -111,18 +111,6 @@ public class RangedEnemy : MonoBehaviour
         }
     }
 
-    // private void ChooseNewPosition()
-    // {
-    //     Vector2 randomDirection = Random.insideUnitCircle.normalized;
-
-    //     targetPosition =
-    //         (Vector2)transform.position +
-    //         randomDirection * repositionDistance;
-
-    //     isRepositioning = true;
-    //     repositionTimer = repositionTime;
-    // }
-
     private void Attack()
     {
         if (player == null)
@@ -141,6 +129,8 @@ public class RangedEnemy : MonoBehaviour
             firePoint.position,
             transform.rotation
         );
+
+        audioSource.Play();
     }
 
     public void TakeDamage(float damageAmount)

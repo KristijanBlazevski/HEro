@@ -44,6 +44,8 @@ public class Attack : MonoBehaviour
 
         Destroy(attack, attackDelay);
         Invoke(nameof(DealDamage), attackDelay);
+
+        
     }
 
     private void DealDamage()

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private EnemySpawner enemySpawner;
-
+    [SerializeField] private AudioSource audioSource;
     private bool isAttacking;
 
     private void Awake()
@@ -76,6 +76,8 @@ public class Enemy : MonoBehaviour
     {
         isAttacking = true;
         rb.linearVelocity = Vector2.zero;
+
+        audioSource.Play();
     }
 
     public void StopAttack()
