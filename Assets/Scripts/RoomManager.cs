@@ -5,31 +5,35 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField] private bool isPlayerInside = false;
     [SerializeField] private bool hasSpawned = false;
-    [SerializeField] List<GameObject> enemiesAlive = new List<GameObject>();
-    [SerializeField] EnemySpawner meleeSpawner;
-    [SerializeField] EnemySpawner rangeSpawner;
-    [SerializeField] GameObject portal;
+    [SerializeField] private bool upgradeShown = false;
 
+    [SerializeField] private List<GameObject> enemiesAlive = new List<GameObject>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private EnemySpawner meleeSpawner;
+    [SerializeField] private EnemySpawner rangeSpawner;
+    [SerializeField] private GameObject portal;
+    [SerializeField] private UpgradeManager upgradeManager;
+    [SerializeField] private bool showUpgrade = true;
+
     void Start()
     {
         meleeSpawner = transform.Find("MeleeSpawner").GetComponent<EnemySpawner>();
         rangeSpawner = transform.Find("RangeSpawner").GetComponent<EnemySpawner>();
+
+        portal.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        // Spawn enemies when player enters room
         if (!hasSpawned && isPlayerInside)
         {
-            if(meleeSpawner != null)
+            if (meleeSpawner != null)
             {
                 enemiesAlive.AddRange(meleeSpawner.SpawnEnemies());
             }
 
-            if(rangeSpawner != null)
+            if (rangeSpawner != null)
             {
                 enemiesAlive.AddRange(rangeSpawner.SpawnEnemies());
             }
@@ -37,30 +41,40 @@ public class RoomManager : MonoBehaviour
             hasSpawned = true;
         }
 
-        if(hasSpawned && enemiesAlive.Count == 0)
+        // All enemies are dead
+        if (hasSpawned && enemiesAlive.Count == 0 && !upgradeShown)
         {
-            portal.SetActive(true);
+            upgradeShown = true;
+
+            if (showUpgrade)
+            {
+                upgradeManager.ShowUpgrades(this);
+            }
+            else
+            {
+                portal.SetActive(true);
+            }
         }
     }
 
+    public void UpgradeFinished()
+    {
+        portal.SetActive(true);
+    }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            isPlayerInside= true;
+            isPlayerInside = true;
         }
-        //Kasni spawnot vo trigger i zatoa hasSpawned e true i enemies use ne se spawnale
-        // if (collision.CompareTag("Enemy"))
-        // {
-        //     enemiesAlive.Add(collision.gameObject);
-        // }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-         if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            isPlayerInside= false;
+            isPlayerInside = false;
         }
 
         if (collision.CompareTag("Enemy"))

@@ -1,21 +1,32 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class PlayerInputs : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 1f;
+
+    [Header("Health")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth;
+
+    [Header("Attack")]
     [SerializeField] private float attSpeed = 1f;
     [SerializeField] private float attRange = 5f;
+    [SerializeField] private float arrowDamage = 10f;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform firePoint;
+
+    [Header("UI")]
     [SerializeField] private Slider healthBar;
     [SerializeField] private TMP_Text healthText;
+
     private Rigidbody2D rb;
     private Vector3 movement;
     private float attTimer;
     private Transform target;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,10 +35,13 @@ public class PlayerInputs : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
+
         attTimer = 0f;
-        healthText.text = currentHealth + " / " + maxHealth;
+
+        UpdateHealthUI();
     }
 
     private void Update()
@@ -65,8 +79,8 @@ public class PlayerInputs : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(
-        movement * moveSpeed,
-        ForceMode2D.Impulse
+            movement * moveSpeed,
+            ForceMode2D.Impulse
         );
 
         if (movement != Vector3.zero)
@@ -78,7 +92,6 @@ public class PlayerInputs : MonoBehaviour
             transform.rotation =
                 Quaternion.Euler(0f, 0f, angle);
         }
-    
         else if (target != null)
         {
             LookAtEnemy();
@@ -131,22 +144,72 @@ public class PlayerInputs : MonoBehaviour
 
         LookAtEnemy();
 
-        Instantiate(
+        GameObject arrowObject = Instantiate(
             arrowPrefab,
             firePoint.position,
             transform.rotation
         );
+
+        Arrow arrow = arrowObject.GetComponent<Arrow>();
+
+        if (arrow != null)
+        {
+            arrow.SetDamage(arrowDamage);
+        }
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        healthBar.value = currentHealth;
-        healthText.text = currentHealth + " / " + maxHealth;
+
+        if (currentHealth < 0f)
+            currentHealth = 0f;
+
+        UpdateHealthUI();
+
         if (currentHealth <= 0f)
         {
             Destroy(gameObject);
             GameManager.Instance.GameOver();
         }
+    }
+
+    private void UpdateHealthUI()
+    {
+        healthBar.value = currentHealth;
+        healthText.text = currentHealth + " / " + maxHealth;
+    }
+
+    public void IncreaseDamage(float amount)
+    {
+        arrowDamage += amount;
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        UpdateHealthUI();
+    }
+
+    public void IncreaseAttackSpeed(float amount)
+    {
+        attSpeed += amount;
+    }
+
+    public void IncreaseMoveSpeed(float amount)
+    {
+        moveSpeed += amount;
+    }
+
+    public void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        currentHealth += amount;
+
+        UpdateHealthUI();
     }
 }
